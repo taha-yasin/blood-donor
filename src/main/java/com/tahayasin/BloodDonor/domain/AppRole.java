@@ -3,21 +3,28 @@ package com.tahayasin.BloodDonor.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AppRole {
+public class AppRole implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String username;
     private String roleName;
 
+    @Override
+    public String getAuthority() {
+        return roleName;
+    }
+
+//    @ManyToMany(mappedBy = "roles")
+//    private List<AppUser> users;
 }
