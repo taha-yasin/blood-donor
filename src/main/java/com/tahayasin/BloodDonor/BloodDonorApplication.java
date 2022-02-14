@@ -19,18 +19,14 @@ public class BloodDonorApplication {
 		SpringApplication.run(BloodDonorApplication.class, args);
 	}
 
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 	@Bean
 	CommandLineRunner run(AppUserService appUserService) {
 		return args -> {
-			appUserService.saveRole(new AppRole(null, "ROLE_ADMIN"));
-			appUserService.saveRole(new AppRole(null, "ROLE_SUPER_ADMIN"));
-			appUserService.saveRole(new AppRole(null, "ROLE_USER"));
-			appUserService.saveRole(new AppRole(null, "ROLE_MANAGER"));
+			appUserService.saveRole(new AppRole(null, "John", "ROLE_ADMIN"));
+			appUserService.saveRole(new AppRole(null, "Will", "ROLE_SUPER_ADMIN"));
+			appUserService.saveRole(new AppRole(null, "Jim", "ROLE_USER"));
+			appUserService.saveRole(new AppRole(null, "Arnold", "ROLE_MANAGER"));
 
 			appUserService.saveUser(new AppUser(null, "John", "Travolta", "john", "1234", new ArrayList<>()));
 			appUserService.saveUser(new AppUser(null, "Will", "Smith", "will", "1234", new ArrayList<>()));
@@ -43,6 +39,7 @@ public class BloodDonorApplication {
 			appUserService.addRoleToUser("arnold", "ROLE_SUPER_ADMIN");
 			appUserService.addRoleToUser("arnold", "ROLE_ADMIN");
 			appUserService.addRoleToUser("arnold", "ROLE_USER");
+
 		};
 	}
 
