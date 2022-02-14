@@ -5,6 +5,8 @@ import com.tahayasin.BloodDonor.domain.AppUser;
 import com.tahayasin.BloodDonor.service.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -18,7 +20,13 @@ public class UserController {
 
     private final AppUserService appUserService;
 
+    @PostMapping("/signin")
+    public Authentication login(@RequestBody LoginDto loginDto) {
+        return appUserService.signin(loginDto.getUsername(), loginDto.getPassword()) ;
+    }
+
     @GetMapping("/users")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<AppUser>>getUsers() {
         return ResponseEntity.ok().body(appUserService.getUsers());
     }
@@ -35,9 +43,33 @@ public class UserController {
         return ResponseEntity.created(uri).body(appUserService.saveRole(role));
     }
 
-    @PostMapping("/role/addtouser")
-    public ResponseEntity<?>addRoleToUser(@RequestBody LoginDto loginDto) {
-        appUserService.addRoleToUser(loginDto.getUsername(), loginDto.getRoleName());
-        return ResponseEntity.ok().build();
+
+    /***********************************************************
+     ********************************************************
+     */
+
+    @GetMapping("/msg1")
+    String msg1() {
+        return "ONE";
+    }
+
+    @GetMapping("/msg2")
+    String msg2() {
+        return "TWO";
+    }
+
+    @GetMapping("/msg3")
+    String msg3() {
+        return "THREE";
+    }
+
+    @GetMapping("/open")
+    String open() {
+        return "OPEN ACCESS";
+    }
+
+    @GetMapping("/secure")
+    String secured() {
+        return "RESTRICTED ACCESS";
     }
 }
