@@ -15,7 +15,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-    show-sql: true
+    show-sql: false
 
   mail:
     host: smtp.gmail.com
@@ -34,4 +34,12 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
+
+
+security:
+  jwt:
+    token:
+      secret-key: secret-key-for-encryption         # application-specific string used to encrypt tokens
+      expiration: 600000                            # token valid for 10 minutes
+
 
