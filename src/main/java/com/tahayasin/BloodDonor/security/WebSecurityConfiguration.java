@@ -15,6 +15,7 @@ import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMap
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
@@ -24,9 +25,9 @@ import static org.springframework.http.HttpMethod.POST;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    private AppUserDetailsService appUserDetailsService;
-//
+    @Autowired
+    private AppUserDetailsService appUserDetailsService;
+
 //    @Bean
 //    public DaoAuthenticationProvider authenticationProvider() {
 //        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -53,11 +54,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/api/msg*").permitAll();
-        http.authorizeRequests().antMatchers("/api/open").hasAnyAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers("/api/secure").hasAnyAuthority("ROLE_ADMIN");
+//        http.authorizeRequests().antMatchers("/api/msg*").permitAll();
+//        http.authorizeRequests().antMatchers("/api/open").hasAnyAuthority("ROLE_USER");
+//        http.authorizeRequests().antMatchers("/api/secure").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/api/signin").permitAll();
+        http.authorizeRequests().antMatchers("/api/users").permitAll();
+        http.authorizeRequests().antMatchers("/api/roles").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
+        http.addFilterBefore(new JwtTokenFilter(appUserDetailsService), UsernamePasswordAuthenticationFilter.class);
 
     }
 
