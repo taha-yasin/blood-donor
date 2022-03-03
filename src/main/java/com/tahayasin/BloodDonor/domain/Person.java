@@ -1,20 +1,26 @@
-package com.tahayasin.BloodDonor.api;
+package com.tahayasin.BloodDonor.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Basic;
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.sql.Date;
 
+
+@Embeddable
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class LoginDto {
+@AllArgsConstructor
+public class Person {
 
     private String firstName;
     private String lastName;
     private String gender;
+
+    @Basic
     private Date dateOfBirth;
-    private String username;
-    private String password;
 }

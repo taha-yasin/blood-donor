@@ -9,6 +9,11 @@ A full stack restful Application to connect with real time donors for voluntary 
 - Spring Data JPA
 - PostgreSQL
 
+
+## Challenges
+- MultipleBagFetchException
+
+
 ## ER Diagram
 
 ```mermaid
