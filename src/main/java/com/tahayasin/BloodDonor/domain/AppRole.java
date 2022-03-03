@@ -16,8 +16,9 @@ public class AppRole implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long role_id;
     private String roleName;
+
 
     @Override
     public String getAuthority() {

@@ -8,3 +8,7 @@ A full stack restful Application to connect with real time donors for voluntary 
 - Spring Security
 - Spring Data JPA
 - PostgreSQL
+
+## Challenges
+
+- MultipleBagFetchException
