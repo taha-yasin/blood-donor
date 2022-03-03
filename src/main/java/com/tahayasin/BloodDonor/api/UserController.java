@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -24,28 +25,33 @@ public class UserController {
 
 
     @PostMapping("/signin")
-    public String login(@RequestBody /*@Valid*/ LoginDto loginDto) {
+    public String login(@RequestBody @Valid LoginDto loginDto) {
         return appUserService.signin(loginDto.getUsername(), loginDto.getPassword()).orElseThrow(() ->
                 new HttpServerErrorException(HttpStatus.FORBIDDEN, "Login Failed"));
     }
 
     @PostMapping("/signup")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    public AppUser signup(@RequestBody /*@Valid*/ LoginDto loginDto) {
-        return appUserService.signup(loginDto.getFirstName(), loginDto.getLastName(), loginDto.getUsername(), loginDto.getPassword())
+    public AppUser signup(@RequestBody @Valid LoginDto loginDto) {
+        return appUserService.signup(loginDto.getFirstName(),
+                        loginDto.getLastName(),
+                        loginDto.getGender(),
+                        loginDto.getDateOfBirth(),
+                        loginDto.getUsername(),
+                        loginDto.getPassword())
                 .orElseThrow(() -> new HttpServerErrorException(HttpStatus.BAD_REQUEST, "User already exists"));
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<AppUser> getAllUsers() {
         return appUserService.getAllUser();
 
     }
 
     @GetMapping("roles")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<AppRole> getAllRoles() {
         return appUserService.getAllRoles();
     }

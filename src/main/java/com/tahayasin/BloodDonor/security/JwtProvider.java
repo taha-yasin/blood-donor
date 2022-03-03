@@ -35,7 +35,7 @@ public class JwtProvider {
      * @param roles
      * @return jwt string
      */
-    public String createToken(String username, List<AppRole> roles) {
+    public String createToken(String username, Set<AppRole> roles) {
         //Add the username to the payload
         Claims claims = Jwts.claims().setSubject(username);
         //Convert roles to Spring Security SimpleGrantedAuthority objects,
