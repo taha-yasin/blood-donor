@@ -28,8 +28,8 @@ public class AppUser {
         this.person = person;
         this.username = username;
         this.password = password;
-        //this.roles = Arrays.asList(role);
-        this.roles.add(role);
+        this.roles = new HashSet<>(Arrays.asList(role));
+        //this.roles.add(role);
     }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -39,6 +39,7 @@ public class AppUser {
             inverseJoinColumns = @JoinColumn(name = "role_id",
                     referencedColumnName = "role_id"))
     private Set<AppRole> roles;
+    //private List<AppRole> roles;
 
     public void assignRole(AppRole appRole) {
         roles.add(appRole);
