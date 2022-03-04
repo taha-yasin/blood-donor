@@ -30,11 +30,10 @@ public class BloodDonor {
     private Date lastDonationDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "donor")
-    Set<BloodRequest> bloodRequests;
+    private Set<BloodRequest> bloodRequests;
 
 
     public BloodDonor(AppUser user, String bloodGroup, Address address, String whatsAppNumber, Date lastDonationDate) {
-
         this.appUser = user;
         this.bloodGroup = bloodGroup;
         this.address = address;
