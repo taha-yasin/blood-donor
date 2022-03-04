@@ -4,16 +4,12 @@ import com.tahayasin.BloodDonor.domain.*;
 import com.tahayasin.BloodDonor.repo.*;
 import com.tahayasin.BloodDonor.security.JwtProvider;
 import lombok.AllArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +19,6 @@ public class AppUserService {
     //private static final Logger LOGGER = LoggerFactory.getLogger(AppUserService.class);
     private final AppUserRepository appUserRepository;
     private final AppRoleRepository appRoleRepository;
-    private final BloodDonorRepository bloodDonorRepository;
-    private final BloodRecipientRepository bloodRecipientRepository;
-    private final BloodRequestRepository bloodRequestRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
@@ -62,15 +55,39 @@ public class AppUserService {
      * @param lastName last name
      * @return Optional of user, empty if the user already exists.
      */
-    public Optional<AppUser> signup(String firstName, String lastName, String gender, Date dateOfBirth, String username, String password) {
+//    public Optional<AppUser> signup(String firstName,
+//                                    String lastName,
+//                                    String gender,
+//                                    Date dateOfBirth,
+//                                    String username,
+//                                    String password) {
+//        //LOGGER.info("New user attempting to sign in");
+//        Optional<AppUser> user = Optional.empty();
+//        if (!appUserRepository.findByUsername(username).isPresent()) {
+//            Optional<AppRole> role = appRoleRepository.findByRoleName("ROLE_USER");
+//            user = Optional.of(appUserRepository.save(new AppUser(new Person(firstName,
+//                    lastName,
+//                    gender,
+//                    dateOfBirth),
+//                    username,
+//                    passwordEncoder.encode(password),
+//                    role.get())));
+//        }
+//        return user;
+//    }
+
+    public Optional<AppUser> signup(Person person,
+                                    String username,
+                                    String password) {
         //LOGGER.info("New user attempting to sign in");
         Optional<AppUser> user = Optional.empty();
         if (!appUserRepository.findByUsername(username).isPresent()) {
-            Optional<AppRole> role = appRoleRepository.findByRoleName("ROLE_USER");
-            user = Optional.of(appUserRepository.save(new AppUser(new Person(firstName, lastName, gender, dateOfBirth),
+            Optional<AppRole> role_user = appRoleRepository.findByRoleName("ROLE_USER");
+
+            user = Optional.of(appUserRepository.save(new AppUser(person,
                     username,
                     passwordEncoder.encode(password),
-                    role.get())));
+                    role_user.get())));
         }
         return user;
     }
@@ -89,11 +106,6 @@ public class AppUserService {
         return appUserRepository.save(user);
     }
 
-    public BloodDonor saveDonor(String username, String bloodGroup, Address address, String whatsAppNumber, Date lastDonationDate) {
-        AppUser user = appUserRepository.findByUsername(username).get();
-        BloodDonor donor = new BloodDonor(user, bloodGroup, address, whatsAppNumber, lastDonationDate);
-        return bloodDonorRepository.save(donor);
-    }
 
     //Prepopulate roles for testing purpose
     public AppRole saveRole(AppRole role) {

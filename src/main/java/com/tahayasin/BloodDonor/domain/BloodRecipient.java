@@ -22,7 +22,7 @@ public class BloodRecipient {
     private AppUser appUser;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "recipient")
-    Set<BloodRequest> bloodRequests;
+    private Set<BloodRequest> bloodRequests;
 
 
 
