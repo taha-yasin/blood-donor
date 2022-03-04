@@ -4,6 +4,11 @@ A full stack restful Application to connect with real time donors for voluntary 
 
 ## Technologies used:
 
+### Frontend
+- React
+- axios
+
+### Backend
 - Spring Boot
 - Spring Security
 - Spring Data JPA
