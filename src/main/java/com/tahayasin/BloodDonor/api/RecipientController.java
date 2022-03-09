@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpServerErrorException;
 
 @RestController
+@CrossOrigin("http://localhost:3000/")
 @RequestMapping("/blood-recipient")
 @RequiredArgsConstructor
 public class RecipientController {
