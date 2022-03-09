@@ -13,6 +13,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin("http://localhost:3000/")
 @RequestMapping("/blood-donor")
 @RequiredArgsConstructor
 public class BlooodDonorController {
