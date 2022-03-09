@@ -45,9 +45,9 @@ public class BloodDonorApplication {
 //			appUserService.saveUser(new AppUser(null, new Person("Jim", "Carry", "Male", Date.valueOf("1998-03-08")),"jim", "1234", new ArrayList<>()));
 //			appUserService.saveUser(new AppUser(null, new Person("Arnold", "Schwarzenegger", "Male", Date.valueOf("1997-11-14")),"arnold", "1234", new ArrayList<>()));
 
-//			bloodDonorService.saveDonor("john", "B+", new Address("Chandni chowk", "Baner", "Pune", "Maharashtra", "123456"), "987654321", Date.valueOf("2022-01-18"));
-//			bloodDonorService.saveDonor("will", "O+", new Address("Hinjewadi chowk", "Hinjewadi phase 1", "Pune", "Maharashtra", "123456"), "987654321", Date.valueOf("2022-02-27"));
-//			bloodDonorService.saveDonor("arnold", "A-", new Address("New Market", "Kankarbagh", "patna", "Bihar", "123456"), "987654321", Date.valueOf("2021-12-31"));
+			bloodDonorService.saveDonor("john", "B+", new Address("Chandni chowk", "Baner", "Pune", "Maharashtra", "123456"), "987654321", Date.valueOf("2022-01-18"));
+			bloodDonorService.saveDonor("will", "B+", new Address("Hinjewadi chowk", "Hinjewadi phase 1", "Pune", "Maharashtra", "654321"), "987654321", Date.valueOf("2022-02-27"));
+			bloodDonorService.saveDonor("arnold", "B+", new Address("New Market", "Kankarbagh", "patna", "Bihar", "123456"), "987654321", Date.valueOf("2021-12-31"));
 
 			appUserService.addRoleToUser("john", "ROLE_USER");
 			appUserService.addRoleToUser("john", "ROLE_DONOR");

@@ -12,7 +12,6 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserLoginDto {
-    //private PersonDto personDto;
     private Person person;
     private String username;
     private String password;
