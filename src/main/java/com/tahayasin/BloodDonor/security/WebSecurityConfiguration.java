@@ -57,9 +57,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().antMatchers("/api/msg*").permitAll();
 //        http.authorizeRequests().antMatchers("/api/open").hasAnyAuthority("ROLE_USER");
 //        http.authorizeRequests().antMatchers("/api/secure").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers("/api/signin").permitAll();
-        http.authorizeRequests().antMatchers("/api/users").permitAll();
-        http.authorizeRequests().antMatchers("/api/roles").permitAll();
+        http.authorizeRequests().antMatchers("/user/signin").permitAll();
+        http.authorizeRequests().antMatchers("/user/signup").permitAll();
+        http.authorizeRequests().antMatchers("/blood-donor/register").permitAll();
         http.authorizeRequests().antMatchers("/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilterBefore(new JwtTokenFilter(appUserDetailsService), UsernamePasswordAuthenticationFilter.class);

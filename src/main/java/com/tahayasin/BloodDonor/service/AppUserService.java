@@ -6,7 +6,9 @@ import com.tahayasin.BloodDonor.security.JwtProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -90,6 +92,20 @@ public class AppUserService {
                     role_user.get())));
         }
         return user;
+    }
+
+
+    public String getUsernameOfCurrentUser() {
+        //String headerValue = ((HttpServletRequest)req).getHeader("Authorization");
+        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+        String headerValue = authToken.getCredentials().toString();
+
+        Optional<String > token = Optional.empty();
+        if (headerValue != null && headerValue.startsWith("Bearer")) {
+            token = Optional.of(headerValue.replace("Bearer", "").trim());
+        }
+
+        return jwtProvider.getUsername(token.get());
     }
 
     public List<AppUser> getAllUser() {

@@ -46,6 +46,13 @@ public class UserController {
 
     }
 
+    @GetMapping("/profile")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String getUserProfile() {
+        return "testing the message after this: " + appUserService.getUsernameOfCurrentUser();
+
+    }
+
     @GetMapping("roles")
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<AppRole> getAllRoles() {
