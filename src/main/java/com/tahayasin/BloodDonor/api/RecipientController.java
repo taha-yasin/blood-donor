@@ -42,4 +42,9 @@ public class RecipientController {
 
         return bloodRecipientService.findDonor(bloodGroup, city, pincode, pageNo, pageSize, sortBy);
     }
+
+    @PostMapping("/test")
+    public String test(@RequestBody String s) {
+        return s;
+    }
 }
