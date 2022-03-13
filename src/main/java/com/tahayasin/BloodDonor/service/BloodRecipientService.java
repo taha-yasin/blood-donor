@@ -21,10 +21,15 @@ public class BloodRecipientService {
     private final BloodRecipientRepository bloodRecipientRepository;
     private final BloodRequestRepository bloodRequestRepository;
 
-    public Page<BloodDonor> findDonor(String bloodGroup, String city, String pincode, int pageNo, int pageSize, String sortBy) {
+    public List<BloodDonor> findDonor(String bloodGroup, String city, String pincode, int pageNo, int pageSize, String sortBy) {
 
         Pageable pageOfDonors = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
-        Page<BloodDonor> bloodDonors = bloodDonorRepository.findByBloodGroupAndAddressCityOrAddressPincode(bloodGroup, city, pincode, pageOfDonors);
+//        Page<BloodDonor> bloodDonors = bloodDonorRepository.findByBloodGroupAndAddressCityOrAddressPincode(bloodGroup,
+//                city,
+//                pincode,
+//                pageOfDonors);
+
+        List<BloodDonor> bloodDonors = bloodDonorRepository.findByBloodGroupAndAddressCityOrAddressPincode(bloodGroup, city, pincode, pageOfDonors);
 
         return bloodDonors;
     }

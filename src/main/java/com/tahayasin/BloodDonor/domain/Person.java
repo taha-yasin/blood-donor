@@ -9,6 +9,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 
 @Embeddable
@@ -23,4 +25,10 @@ public class Person {
 
     @Basic
     private Date dateOfBirth;
+
+    public int getAge(Date dateOfBirth) {
+        LocalDate birthDate = new Date(dateOfBirth.getTime()).toLocalDate();
+        Period period = Period.between(birthDate, LocalDate.now());
+        return period.getYears();
+    }
 }
