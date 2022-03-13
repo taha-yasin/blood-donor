@@ -17,6 +17,6 @@ public interface BloodDonorRepository extends PagingAndSortingRepository<BloodDo
     Optional<BloodDonor> findByAppUserUsername(String username);
 
     Page<BloodDonor> findByBloodGroupAndAddressPincode(String bloodGroup, String pincode, Pageable pageable);
-    //Page<BloodDonor> findByBloodGroupAndAddressCityOrAddressPincode(String bloodGroup, String city, String pincode, Pageable pageable);
-    List<BloodDonor> findByBloodGroupAndAddressCityOrAddressPincode(String bloodGroup, String city, String pincode, Pageable pageable);
+    Page<BloodDonor> findByBloodGroupAndAddressCityOrAddressPincode(String bloodGroup, String city, String pincode, Pageable pageable);
+//    List<BloodDonor> findByBloodGroupAndAddressCityOrAddressPincode(String bloodGroup, String city, String pincode, Pageable pageable);
 }
