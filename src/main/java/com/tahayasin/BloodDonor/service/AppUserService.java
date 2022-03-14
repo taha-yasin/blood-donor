@@ -4,6 +4,7 @@ import com.tahayasin.BloodDonor.domain.*;
 import com.tahayasin.BloodDonor.repo.*;
 import com.tahayasin.BloodDonor.security.JwtProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,8 @@ public class AppUserService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
+
+    private final HttpServletRequest request;
 
     /**
      * Sign in a user into the application, with JWT-enabled authentication
@@ -95,17 +99,23 @@ public class AppUserService {
     }
 
 
-    public String getUsernameOfCurrentUser() {
-        //String headerValue = ((HttpServletRequest)req).getHeader("Authorization");
-        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
-        String headerValue = authToken.getCredentials().toString();
+//    public String getUsernameOfCurrentUser() {
+//
+//        //String headerValue = ((HttpServletRequest)req).getHeader("Authorization");
+//        Authentication authToken = SecurityContextHolder.getContext().getAuthentication();
+//        String headerValue = authToken.getCredentials().toString();
+//
+//        Optional<String > token = Optional.empty();
+//        if (headerValue != null && headerValue.startsWith("Bearer")) {
+//            token = Optional.of(headerValue.replace("Bearer", "").trim());
+//        }
+//
+//        return jwtProvider.getUsername(token.get());
+//    }
 
-        Optional<String > token = Optional.empty();
-        if (headerValue != null && headerValue.startsWith("Bearer")) {
-            token = Optional.of(headerValue.replace("Bearer", "").trim());
-        }
-
-        return jwtProvider.getUsername(token.get());
+    public String getAuthToken() {
+        String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        return authHeader;
     }
 
     public List<AppUser> getAllUser() {
