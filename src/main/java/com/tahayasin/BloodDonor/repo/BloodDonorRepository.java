@@ -5,8 +5,10 @@ import com.tahayasin.BloodDonor.domain.BloodDonor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,4 +21,9 @@ public interface BloodDonorRepository extends PagingAndSortingRepository<BloodDo
     Page<BloodDonor> findByBloodGroupAndAddressPincode(String bloodGroup, String pincode, Pageable pageable);
     Page<BloodDonor> findByBloodGroupAndAddressCityOrAddressPincode(String bloodGroup, String city, String pincode, Pageable pageable);
 //    List<BloodDonor> findByBloodGroupAndAddressCityOrAddressPincode(String bloodGroup, String city, String pincode, Pageable pageable);
+
+//    @Query("SELECT donor.donor_id FROM BloodDonor donor where donor.username = :name")
+//    Long findIdByName(@Param("name") String name);
+
 }
+

@@ -1,6 +1,7 @@
 package com.tahayasin.BloodDonor.service;
 
 import com.tahayasin.BloodDonor.domain.BloodDonor;
+import com.tahayasin.BloodDonor.domain.BloodRequest;
 import com.tahayasin.BloodDonor.repo.BloodDonorRepository;
 import com.tahayasin.BloodDonor.repo.BloodRecipientRepository;
 import com.tahayasin.BloodDonor.repo.BloodRequestRepository;
@@ -20,6 +21,7 @@ public class BloodRecipientService {
     private final BloodDonorRepository bloodDonorRepository;
     private final BloodRecipientRepository bloodRecipientRepository;
     private final BloodRequestRepository bloodRequestRepository;
+    private final AppUserService appUserService;
 
     public Page<BloodDonor> findDonor(String bloodGroup, String city, String pincode, int pageNo, int pageSize, String sortBy) {
 
@@ -33,4 +35,11 @@ public class BloodRecipientService {
 
         return bloodDonors;
     }
+
+//    public void requestBlood(List<Long> userIds) {
+//        Long donorId = appUserService.getAuthenticatedUserId();
+//
+//        BloodRequest bloodRequest = new BloodRequest()
+//        bloodRequestRepository.save();
+//    }
 }

@@ -50,7 +50,7 @@ public class UserController {
     @GetMapping("/profile")
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public String getUserProfile() {
-        return "This is the Auth Header from Response Header: " + appUserService.getAuthToken();
+        return "This is the Auth Header from Response Header: " + appUserService.getAuthenticatedUserId();
 
     }
 

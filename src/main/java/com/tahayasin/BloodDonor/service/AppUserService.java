@@ -113,9 +113,19 @@ public class AppUserService {
 //        return jwtProvider.getUsername(token.get());
 //    }
 
-    public String getAuthToken() {
+    public Long getAuthenticatedUserId() {
+
         String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-        return authHeader;
+
+        Optional<String> token = Optional.empty();
+        if (authHeader != null && authHeader.startsWith("Bearer")) {
+            token = Optional.of(authHeader.replace("Bearer", "").trim());
+        }
+
+        String username = jwtProvider.getUsername(token.get());
+        Long userId = appUserRepository.findIdByName(username);
+
+        return userId;
     }
 
     public List<AppUser> getAllUser() {

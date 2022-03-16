@@ -18,7 +18,7 @@ public class BloodRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long request_id;
 
     @ManyToOne
     @JoinColumn(name = "donor_id")
