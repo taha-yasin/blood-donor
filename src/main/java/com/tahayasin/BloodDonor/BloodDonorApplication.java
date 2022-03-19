@@ -29,10 +29,12 @@ public class BloodDonorApplication {
 	@Bean
 	CommandLineRunner run(AppUserService appUserService, BloodDonorService bloodDonorService) {
 		return args -> {
+//			appUserService.saveRole(new AppRole(null, "ROLE_ADMIN", new HashSet<>()));
+//			appUserService.saveRole(new AppRole(null, "ROLE_USER", new HashSet<>()));
+//			appUserService.saveRole(new AppRole(null, "ROLE_DONOR", new HashSet<>()));
+
 			appUserService.saveRole(new AppRole(null, "ROLE_ADMIN"));
-			//appUserService.saveRole(new AppRole(null, "ROLE_SUPER_ADMIN"));
 			appUserService.saveRole(new AppRole(null, "ROLE_USER"));
-			//appUserService.saveRole(new AppRole(null, "ROLE_MANAGER"));
 			appUserService.saveRole(new AppRole(null, "ROLE_DONOR"));
 
 			appUserService.saveUser(new AppUser(null, new Person("John", "Travolta", "Male", Date.valueOf("1998-06-18")), "john@test.com", "Abcd@1234", new HashSet<>()));

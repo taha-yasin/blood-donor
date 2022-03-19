@@ -17,6 +17,7 @@ A full stack restful Application to connect with real time donors for voluntary 
 
 ## Challenges
 - MultipleBagFetchException
+- LazyInitializationException
 
 
 ## ER Diagram

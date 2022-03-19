@@ -29,7 +29,15 @@ public class BloodDonor {
     @Basic
     private Date lastDonationDate;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "donor")
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "donor")
+//    private Set<BloodRequest> bloodRequests;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "donor_request",
+            joinColumns = @JoinColumn(name = "donor_id",
+                    referencedColumnName = "donor_id"),
+            inverseJoinColumns = @JoinColumn(name = "request_id",
+                    referencedColumnName = "request_id"))
     private Set<BloodRequest> bloodRequests;
 
 

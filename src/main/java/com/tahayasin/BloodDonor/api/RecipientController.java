@@ -60,8 +60,6 @@ public class RecipientController {
         return  donorsPage;
     }
 
-    @PostMapping("/test")
-    public String test(@RequestBody String s) {
-        return s;
-    }
+    @PostMapping("/create-request")
+    public
 }

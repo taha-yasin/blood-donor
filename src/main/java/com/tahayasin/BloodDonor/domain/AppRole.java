@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -26,5 +27,5 @@ public class AppRole implements GrantedAuthority {
     }
 
 //    @ManyToMany(mappedBy = "roles")
-//    private List<AppUser> users;
+//    private Set<AppUser> users;
 }

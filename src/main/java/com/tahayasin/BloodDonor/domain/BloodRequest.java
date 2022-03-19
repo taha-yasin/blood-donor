@@ -20,13 +20,16 @@ public class BloodRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long request_id;
 
-    @ManyToOne
-    @JoinColumn(name = "donor_id")
-    private BloodDonor donor;
+    @ManyToMany(mappedBy = "bloodRequests")
+    private Set<BloodDonor> bloodDonors;
+
+//    @ManyToOne
+//    @JoinColumn(name = "donor_id")
+//    private BloodDonor donor;
 
     @ManyToOne
     @JoinColumn(name = "recipient_id")
-    private BloodRecipient recipient;
+    private BloodRecipient bloodRecipient;
 
     //private Timestamp generatedAt;
     private LocalDateTime generatedAt;
