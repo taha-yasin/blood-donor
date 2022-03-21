@@ -1,8 +1,11 @@
 package com.tahayasin.BloodDonor.api;
 
 import com.tahayasin.BloodDonor.domain.BloodDonor;
+import com.tahayasin.BloodDonor.domain.BloodRecipient;
+import com.tahayasin.BloodDonor.dto.BloodRequestDto;
 import com.tahayasin.BloodDonor.dto.DonorDto;
 import com.tahayasin.BloodDonor.dto.FindDonorDto;
+import com.tahayasin.BloodDonor.repo.BloodRecipientRepository;
 import com.tahayasin.BloodDonor.service.BloodRecipientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 public class RecipientController {
 
     private final BloodRecipientService bloodRecipientService;
+//    private final BloodRecipientRepository bloodRecipientRepository;
 
 //    @GetMapping("/find-donor/{bloodGroup}/{city}/{pincode}/{pageNo}/{pageSize}/{sortBy}")
 //    @ResponseStatus(HttpStatus.FOUND)
@@ -61,5 +65,20 @@ public class RecipientController {
     }
 
     @PostMapping("/create-request")
-    public
+    @ResponseStatus(HttpStatus.CREATED)
+    public void requestBlood(@RequestBody BloodRequestDto bloodRequestDto) {
+        bloodRecipientService.requestBlood(bloodRequestDto.getDonorIds());
+    }
+
+//    @GetMapping("/test1")
+//    public String test() {
+//        bloodRecipientService.testing();
+//
+//        return "Success";
+//    }
+//
+//    @GetMapping("/test2")
+//    public List<BloodRecipient> testing() {
+//        return bloodRecipientRepository.findAll();
+//    }
 }

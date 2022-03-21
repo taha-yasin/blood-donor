@@ -1,8 +1,7 @@
 package com.tahayasin.BloodDonor.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,7 +11,8 @@ import java.util.*;
 import static javax.persistence.FetchType.EAGER;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AppUser {
@@ -22,6 +22,7 @@ public class AppUser {
     private Long user_id;
     private Person person;
     private String username;
+    @JsonIgnore
     private String password;
 
     public AppUser(Person person, String username, String password, AppRole role) {
@@ -44,6 +45,9 @@ public class AppUser {
     public void assignRole(AppRole appRole) {
         roles.add(appRole);
     }
+
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "appUser")
+//    private Set<BloodRequest> bloodRequests;
 
 //    @ManyToMany(fetch = FetchType.EAGER,
 //            cascade = CascadeType.ALL)

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface BloodDonorRepository extends PagingAndSortingRepository<BloodDonor, Long> {
@@ -22,8 +23,8 @@ public interface BloodDonorRepository extends PagingAndSortingRepository<BloodDo
     Page<BloodDonor> findByBloodGroupAndAddressCityOrAddressPincode(String bloodGroup, String city, String pincode, Pageable pageable);
 //    List<BloodDonor> findByBloodGroupAndAddressCityOrAddressPincode(String bloodGroup, String city, String pincode, Pageable pageable);
 
-//    @Query("SELECT donor.donor_id FROM BloodDonor donor where donor.username = :name")
-//    Long findIdByName(@Param("name") String name);
+    @Query("SELECT donor FROM BloodDonor donor WHERE donor.donor_id  IN :list")
+    Set<BloodDonor> findDonorByListOfIds(@Param("list") Set<Long> list);
 
 }
 

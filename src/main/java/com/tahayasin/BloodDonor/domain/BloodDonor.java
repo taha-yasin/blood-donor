@@ -1,8 +1,6 @@
 package com.tahayasin.BloodDonor.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -11,7 +9,8 @@ import java.util.Set;
 
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class BloodDonor {
@@ -32,12 +31,7 @@ public class BloodDonor {
 //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "donor")
 //    private Set<BloodRequest> bloodRequests;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "donor_request",
-            joinColumns = @JoinColumn(name = "donor_id",
-                    referencedColumnName = "donor_id"),
-            inverseJoinColumns = @JoinColumn(name = "request_id",
-                    referencedColumnName = "request_id"))
+    @ManyToMany(mappedBy = "bloodDonors")
     private Set<BloodRequest> bloodRequests;
 
 

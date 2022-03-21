@@ -1,8 +1,6 @@
 package com.tahayasin.BloodDonor.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
@@ -14,7 +12,8 @@ import java.time.Period;
 
 
 @Embeddable
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Person {

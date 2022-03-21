@@ -18,6 +18,8 @@ A full stack restful Application to connect with real time donors for voluntary 
 ## Challenges
 - MultipleBagFetchException
 - LazyInitializationException
+- [org.springframework.transaction.TransactionSystemException: Could not roll back JPA transaction; nested exception is org.hibernate.TransactionException: Unable to rollback against JDBC Connection]
+- [org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.StackOverflowError]
 
 
 ## ER Diagram
